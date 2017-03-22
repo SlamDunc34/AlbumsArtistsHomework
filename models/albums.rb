@@ -32,4 +32,18 @@ class Album
     SqlRunner.run(sql)
   end
 
+  def self.all()
+    sql = "SELECT * FROM albums;"
+    result =SqlRunner.run(sql)
+    albums = result.map { |album_hash| Album.new(album_hash) }
+    return albums
+  end
+
+  def artist()
+    sql = "SELECT * FROM artists WHERE id = #{@id}"
+    result =SqlRunner.run(sql)
+    artist = Artist.new(result.first)
+    return artist
+  end
+
 end
